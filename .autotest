@@ -1,0 +1,12 @@
+class Autotest
+  def get_to_green
+    begin
+      rerun_all_tests
+      wait_for_changes unless all_good
+    end until all_good
+  end
+end                            
+
+Autotest.add_hook :initialize do |at|
+  ARGV.empty? || at.files_matching('spec/*_spec.rb')
+end
