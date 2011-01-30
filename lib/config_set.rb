@@ -1,5 +1,7 @@
 class ConfigSet
 
+  VERSION = '0.1.2'
+
   Index = Hash.new
 
   def initialize(name)
@@ -19,15 +21,14 @@ class ConfigSet
   end
 
   def method_missing(name, *args, &block)
-    if name.to_s =~ /\=/
+    case
+    when name.to_s =~ /\=/
       instance_variable_set("@#{name.to_s.gsub(/\=/, '')}", args[0])
-    end
-
-    if @yielding
+    when @yielding
       value = block ? ConfigSet.for(name, &block) : args[0]
       instance_variable_set "@#{name}", value
-    elsif !args[0]
-      instance_variable_get "@#{name}"
+    when !args[0]
+      instance_variable_get "@#{name}"      
     end
   end
 
