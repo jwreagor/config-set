@@ -8,6 +8,12 @@ At a glance, ConfigSet is just a data structure for storing settings values. I'm
 
 This library came about while building various gems and realizing I needed a level of abstraction to share between them. I really like the functionality of [ahoward/configuration](https://github.com/ahoward/configuration) and I was largely inspired by it, however I noticed I could do the same thing in six times the size. I also hope to utilize the base in other forms such as being backed by Redis.
 
+
+Usage
+-----
+
+For now just check out the specs until I have time to explain it better. God help you if you can't understand the specs.
+
 Install
 -------
 
