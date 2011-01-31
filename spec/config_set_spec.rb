@@ -48,4 +48,39 @@ describe ConfigSet, 'storing values' do
     config.user.bacon.name.should.equal 'else'
   end
 
+  it 'should use values from parents' do
+    config = ConfigSet.for('b'){
+      host "codeforpeople.com"
+
+      www {
+        port 80
+        url "http://#{ host }:#{ port }"
+      }
+    }
+    
+    config.host.should == 'codeforpeople.com'
+    config.www.port.should == 80
+    config.www.url.should == 'http://codeforpeople.com:80'
+  end
+
+  it 'should override values from parents' do
+    config = ConfigSet.for('b'){
+      host "codeforpeople.com"
+
+      www {
+        port 80
+        friends {
+          host "#{host}/people"
+          more {
+            beans "#{host}/more"
+          }
+        }
+        url "http://#{ host }:#{ port }"
+      }
+    }
+    
+    config.www.friends.more.beans.should == 'codeforpeople.com/people/more'
+    config.www.url.should == "http://codeforpeople.com:80"
+  end
+
 end
