@@ -10,9 +10,9 @@ Gem::Specification.new do |s|
   s.platform    = Gem::Platform::RUBY
   s.authors     = ["Justin Reagor"]
   s.email       = ["cheapRoc@gmail.com"]
-  s.homepage    = "http://github.com/cheapRoc/config_set"
-  s.summary     = "The best way to manage your application's dependencies"
-  s.description = "ConfigSet is the only configuration utility you'll ever need for your app, ever"
+  s.homepage    = "http://github.com/cheapRoc/config-set"
+  s.summary     = "A tiny, purely Ruby, zero dependency, configuration settings library."
+  s.description = "ConfigSet provides a purely Ruby block like data structure for holding configuration settings for your application, with zero outside dependencies."
 
   s.required_rubygems_version = ">= 1.3.6"
   s.rubyforge_project         = "config_spec"

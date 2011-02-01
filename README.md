@@ -2,17 +2,44 @@
 ConfigSet
 =========
 
+By: Justin Reagor (cheapRoc)
+
 ConfigSet is the only configuration utility you'll ever need for your app, ever (I know it'll be mine).
 
-At a glance, ConfigSet is just a data structure for storing settings values. I'm hoping that ConfigSet will continue to stay tiny at its core while becoming a general framework for handling configurations using various patterns; persisted, exportable, etc.
+At a glance, ConfigSet is just a data structure for storing nested values. I'm hoping that ConfigSet will continue to stay tiny at its core while becoming a general framework for handling configurations using various patterns; persisted, exportable, etc.
 
-This library came about while building various gems and realizing I needed a level of abstraction to share between them. I really like the functionality of [ahoward/configuration](https://github.com/ahoward/configuration) and I was largely inspired by it, however I noticed I could do the same thing in six times the size. I also hope to utilize the base in other forms such as being backed by Redis.
+This library came about while building various gems and realizing I needed a level of abstraction to share between them. I really like the functionality of [ahoward/configuration](https://github.com/ahoward/configuration) and I was largely inspired by it, however I noticed it was six times the size of what I had been conceptualizing in my head for awhile now. I also hope to utilize the base in other forms such as being backed by Redis.
 
 
 Usage
 -----
 
-For now just check out the specs until I have time to explain it better. God help you if you can't understand the specs.
+Extensive samples are in `spec/config_set_spec.rb`, however here is a brief example.
+
+    # Setup your nested configuration items like so...
+    app = ConfigSet.for(:development) {
+      host "crimesche.me"
+      path "/signup"
+
+      ruby {
+        path "/ruby"
+        port 80
+        url "http://#{ host }#{ path }"
+      }
+    }
+    
+    # Access your settings
+    App.host == "crimesche.me"
+
+    # Parent settings trickle down to nested configuration blocks
+    App.ruby.url == "http://crimesche.me/ruby"
+
+    # You can also use regular Ruby accessors outside the block
+    App.ruby.path = nil
+
+    # And override existing settings
+    App.ruby.url == "http://crimesche.me/signup"
+
 
 Install
 -------
@@ -21,7 +48,14 @@ Once I've released it all you have to do is:
 
 `gem install config_set`
 
+In your app...
 
+    require 'rubygems'
+    require 'config_set'
+
+    # ...and go to town.
+
+    
 Contribute
 ----------
 
@@ -32,3 +66,10 @@ Contribute
 * Commit, do not mess with Rakefile, version, gemspec, or spec_helper.
 * Send me a pull request on a topic branch in your own repo. I'll include it.
 * Commit rights if you have a lot of tested functionality that's relevant to the roadmap.
+
+
+Copyright
+---------
+
+Copyright (c) 2011 Justin Reagor. See LICENSE for details.
+
