@@ -17,7 +17,7 @@ Usage
 Extensive samples are in `spec/config_set_spec.rb`, however here is a brief example.
 
     # Setup your nested configuration items like so...
-    app = ConfigSet.for(:development) {
+    App = ConfigSet.for(:development) {
       host "crimesche.me"
       path "/signup"
 
