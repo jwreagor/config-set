@@ -1,12 +1,9 @@
-
 ConfigSet
 =========
 
 By: Justin Reagor (cheapRoc)
 
-ConfigSet is the only configuration utility you'll ever need for your app, ever (I know it'll be mine).
-
-At a glance, ConfigSet is just a data structure for storing nested values. I'm hoping that ConfigSet will continue to stay tiny at its core while becoming a general framework for handling configurations using various patterns; persisted, exportable, etc.
+ConfigSet is the only configuration utility you'll ever need for your app, ever (I know it'll be mine). Currently, ConfigSet is just a data structure for storing nested values.
 
 This library came about while building various gems and realizing I needed a level of abstraction to share between them. I really like the functionality of [ahoward/configuration](https://github.com/ahoward/configuration) and I was largely inspired by it, however, I noticed it was way larger than what I could write myself. I also hope to utilize the base in other forms such as being backed by Redis.
 
